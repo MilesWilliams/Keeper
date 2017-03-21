@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'django.contrib.admin',
+    'organizations',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,6 +42,9 @@ INSTALLED_APPS = (
     'rest_framework',
     'Project',
     'Tasks',
+    'Organizations',
+    'Groups',
+    'Users',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -128,3 +132,4 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+ORGS_SLUGFIELD = 'django_extensions.db.fields.AutoSlugField'

@@ -14,9 +14,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from organizations.backends import invitation_backend
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/', include('organizations.urls')),
+    url(r'^invitations/', include(invitation_backend().get_urls())),
     url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/tasks/', include('Tasks.api.urls', namespace='tasks-api')),
     url(r'^api/projects/', include('Project.api.urls', namespace='projects-api')),
