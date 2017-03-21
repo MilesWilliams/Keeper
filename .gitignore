@@ -1,0 +1,8 @@
+*.pyc
+staticfiles
+.env
+bin
+include
+.Python
+lib
+.Ds_Store
