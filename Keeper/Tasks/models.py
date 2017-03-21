@@ -1,6 +1,6 @@
 from django.db import models
 from Project.models import Projects, SubProject
-
+from Organizations.models import Organizations, Groups, Users
 # Create your models here.
 
 class Tasks(models.Model):
@@ -15,6 +15,9 @@ class Tasks(models.Model):
     project = models.ForeignKey(Projects, null=True, blank=True, related_name="projecttasks")
     sub_project = models.ForeignKey(SubProject, null=True, blank=True,
                                     related_name="subprojecttasks")
+    group = models.ForeignKey(Groups, blank=True, null=True, default=None)
+    organization = models.ForeignKey(Organizations, blank=False, null=False)
+    users = models.ManyToManyField(Users, blank=True, default=None)
 
     def __str__(self):
         return self.title

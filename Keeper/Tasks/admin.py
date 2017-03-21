@@ -5,9 +5,10 @@ from .models import Tasks, Images, Files
 
 class TasksAdmin(admin.ModelAdmin):
 
-    list_display = ('title', 'project', 'sub_project', 'due_date')
-    search_fields = ['title', 'project', 'sub_project']
-    list_filter = ["project", "sub_project"]
+    list_display = ('title', 'project', 'sub_project','group', 'due_date')
+    search_fields = ['title', 'project', 'sub_project', 'group', ]
+    list_filter = ["project", "sub_project", 'group', ]
+    filter_horizontal = ('users',)
 
 admin.site.register(Tasks, TasksAdmin)
 

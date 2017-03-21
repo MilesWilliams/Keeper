@@ -6,11 +6,13 @@ class ProjectsAdmin(admin.ModelAdmin):
 	list_display = ('name', 'date')
 	search_fields = ['name', 'date']
 	list_filter = ['name', 'date']
+	filter_horizontal = ('users',)
 
 class SubProjectAdmin(admin.ModelAdmin):
 	list_display = ('name', 'date')
 	search_fields = ['name', 'date']
 	list_filter = ['name','date']
+	filter_horizontal = ('users',)
 
 admin.site.register(Projects, ProjectsAdmin)
 admin.site.register(SubProject, SubProjectAdmin)

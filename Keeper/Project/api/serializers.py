@@ -21,6 +21,9 @@ class SubProjectSerializer(ModelSerializer):
             'date',
             'projects',
             'subprojecttasks',
+            'organization',
+            'group',
+            'users',
         )
 
 class ProjectsSerializer(ModelSerializer):
@@ -46,4 +49,7 @@ class ProjectsSerializer(ModelSerializer):
             'subprojects',
             'projecttasks',
             'github_url',
+            'organization',
+            'group',
+            'users',
         )

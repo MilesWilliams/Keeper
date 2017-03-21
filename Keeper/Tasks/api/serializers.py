@@ -70,5 +70,8 @@ class TasksSerializer(ModelSerializer):
             'sub_project',
             'taskimages',
             'taskfiles',
+            'organization',
+            'group',
+            'users',
         ]
 
