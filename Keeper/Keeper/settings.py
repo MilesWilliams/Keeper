@@ -40,11 +40,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    # 'Users',
+    # 'Groups',
+    'Organizations',
     'Project',
     'Tasks',
-    'Organizations',
-    'Groups',
-    'Users',
+
+
 )
 
 MIDDLEWARE_CLASSES = (

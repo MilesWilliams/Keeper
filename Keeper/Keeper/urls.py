@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/tasks/', include('Tasks.api.urls', namespace='tasks-api')),
     url(r'^api/projects/', include('Project.api.urls', namespace='projects-api')),
+    url(r'^api/users/', include('Organizations.api.urls', namespace='users-api')),
 ]
