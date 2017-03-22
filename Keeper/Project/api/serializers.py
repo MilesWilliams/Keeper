@@ -2,12 +2,14 @@ from rest_framework.serializers import ModelSerializer, StringRelatedField, Imag
 
 from Project.models import Projects, SubProject
 from Tasks.api.serializers import TasksSerializer
+from Organizations.api.serializers import GroupSerializer
 
 class SubProjectSerializer(ModelSerializer):
     """
     The SubProject model serializer
     """
     subprojecttasks = TasksSerializer(many=True, read_only=False)
+    groups = GroupSerializer(many=True, read_only=False)
     class Meta:
         """
         The SubProject model fields
@@ -22,7 +24,7 @@ class SubProjectSerializer(ModelSerializer):
             'projects',
             'subprojecttasks',
             'organization',
-            'group',
+            'groups',
             'users',
         )
 
@@ -33,6 +35,7 @@ class ProjectsSerializer(ModelSerializer):
     project_image = ImageField(max_length=None, use_url=True)
     subprojects = SubProjectSerializer(many=True, read_only=False)
     projecttasks = TasksSerializer(many=True, read_only=False)
+    groups = GroupSerializer(many=True, read_only=False)
     class Meta:
         """
         The Project model fields
@@ -50,6 +53,6 @@ class ProjectsSerializer(ModelSerializer):
             'projecttasks',
             'github_url',
             'organization',
-            'group',
+            'groups',
             'users',
         )

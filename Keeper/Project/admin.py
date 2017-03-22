@@ -6,7 +6,7 @@ class ProjectsAdmin(admin.ModelAdmin):
 	list_display = ('name', 'date')
 	search_fields = ['name', 'date']
 	list_filter = ['name', 'date']
-	filter_horizontal = ('users',)
+	filter_horizontal = ('users', 'groups',)
 
 class SubProjectAdmin(admin.ModelAdmin):
 	list_display = ('name', 'date')

@@ -1,7 +1,6 @@
 from rest_framework.serializers import ModelSerializer, StringRelatedField, ImageField, FileField, SerializerMethodField
 from Tasks.models import Tasks, Images, Files
-
-
+from Organizations.api.serializers import GroupSerializer, UserSerializer, OrganizationSerializer
 class FileSerializer(ModelSerializer):
     """
     The file model serializer
@@ -54,6 +53,9 @@ class TasksSerializer(ModelSerializer):
     """
     taskimages = ImageSerializer(many=True, read_only=True)
     taskfiles = FileSerializer(many=True, read_only=True)
+    organization = OrganizationSerializer(read_only=True)
+    group = GroupSerializer(read_only=True)
+    users = UserSerializer(many=True, read_only=True)
     class Meta:
         """
         The task model fields

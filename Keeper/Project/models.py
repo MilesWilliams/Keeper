@@ -19,7 +19,7 @@ class Projects(models.Model):
     height_field = models.IntegerField(default=0)
     description = models.TextField('Project Description', blank=True, null=True)
     github_url = models.CharField("Github Repo Url", max_length=200, blank=True, null=True)
-    group = models.ForeignKey(Groups, blank=True, null=True, default=None)
+    groups = models.ManyToManyField(Groups, blank=True, default=None)
     organization = models.ForeignKey(Organizations, blank=False, null=False)
     users = models.ManyToManyField(Users, blank=True, default=None)
 
@@ -37,7 +37,7 @@ class SubProject(models.Model):
     completed_on = models.DateTimeField(blank=True, null=True)
     date = models.DateField("Completion Date", default=timezone.now, blank=True)
     projects = models.ForeignKey(Projects, related_name='subprojects', blank=True, null=True)
-    group = models.ForeignKey(Groups, blank=True, null=True, default=None)
+    groups = models.ManyToManyField(Groups, blank=True, default=None)
     organization = models.ForeignKey(Organizations, blank=False)
     users = models.ManyToManyField(Users, blank=True, default=None)
     def __str__(self):

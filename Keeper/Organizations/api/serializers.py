@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer, StringRelatedField, ImageField
+from Organizations.models import Organizations, Users, Groups
 
 class UserSerializer(ModelSerializer):
     class Meta:
@@ -20,3 +21,63 @@ class UserSerializer(ModelSerializer):
         user.save()
 
         return user
+
+class OrganizationSerializer(ModelSerializer):
+    """
+    Keeper Organization serializer
+    """
+    organization_owner = UserSerializer(read_only=True)
+    class Meta:
+        """
+        The Project model fields
+        """
+        model = Organizations
+        fields = (
+            'id',
+            'name',
+            'created_on',
+            'description',
+            'organization_logo',
+            'organization_owner',
+        )
+
+class UsersSerializer(ModelSerializer):
+    """
+    Keeper User serializer
+    """
+    organizations = OrganizationSerializer(read_only=True)
+    class Meta:
+        """
+        The Project model fields
+        """
+        model = Users
+        fields = (
+            'id',
+            'first_name',
+            'last_name',
+            'email_address',
+            'organizations',
+            'user_avatar',
+            'user_type',
+        )
+
+
+class GroupSerializer(ModelSerializer):
+    """
+    Keeper Group serializer
+    """
+    # organizations = OrganizationSerializer(read_only=True)
+    users = UsersSerializer(many=True, read_only=False)
+    class Meta:
+        """
+        The Project model fields
+        """
+        model = Groups
+        fields = (
+            'id',
+            'name',
+            'description',
+            'group_image',
+            'users',
+        )
+
