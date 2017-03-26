@@ -77,6 +77,8 @@ class TaskListApiView(ListAPIView):
     """
     queryset = Tasks.objects.all()
     serializer_class = TasksSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['due_date',]
 
 class TaskUpdateApiView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView):
     """

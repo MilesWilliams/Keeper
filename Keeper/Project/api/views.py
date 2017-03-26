@@ -76,7 +76,7 @@ class ProjectsUpdateView(RetrieveUpdateAPIView):
     """
     queryset = Projects.objects.all()
     serializer_class = ProjectsSerializer
-
+    permission_classes = [AllowAny]
 
 class SubProjectCreateView(CreateAPIView):
     """
