@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer, StringRelatedField, ImageField
 from Organizations.models import Organizations, Users, Groups
+from drf_extra_fields.fields import Base64ImageField
 
 class UserSerializer(ModelSerializer):
     class Meta:
@@ -68,6 +69,8 @@ class GroupSerializer(ModelSerializer):
     """
     # organizations = OrganizationSerializer(read_only=True)
     users = UsersSerializer(many=True, read_only=False)
+    group_image = Base64ImageField(required=False)
+    project_groups = StringRelatedField(many=True)
     class Meta:
         """
         The Project model fields
@@ -78,6 +81,8 @@ class GroupSerializer(ModelSerializer):
             'name',
             'description',
             'group_image',
+            'organizations',
+            'project_groups',
             'users',
         )
 

@@ -22,6 +22,11 @@ class Tasks(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = "Task"
+        verbose_name_plural = "Tasks"
+
+
 def get_image_filename(instance, filename):
     """
     Get the image filename
@@ -49,9 +54,17 @@ class Images(models.Model):
     width_field = models.IntegerField(default=0)
     height_field = models.IntegerField(default=0)
 
+    class Meta:
+        verbose_name = "Image"
+        verbose_name_plural = "Image"
+
 class Files(models.Model):
     """
     The file model
     """
     task = models.ForeignKey(Tasks, blank=True, null=True, default=None, related_name="taskfiles")
     file_url = models.FileField("Task File", blank=True, null=True, upload_to=get_file_filename)
+
+    class Meta:
+        verbose_name = "File"
+        verbose_name_plural = "Files"

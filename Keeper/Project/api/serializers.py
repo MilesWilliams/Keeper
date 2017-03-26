@@ -3,6 +3,7 @@ from rest_framework.serializers import ModelSerializer, StringRelatedField, Imag
 from Project.models import Projects, SubProject
 from Tasks.api.serializers import TasksSerializer
 from Organizations.api.serializers import GroupSerializer
+from drf_extra_fields.fields import Base64ImageField
 
 class SubProjectSerializer(ModelSerializer):
     """
@@ -23,19 +24,19 @@ class SubProjectSerializer(ModelSerializer):
             'date',
             'projects',
             'subprojecttasks',
-            'organization',
             'groups',
             'users',
+
         )
 
 class ProjectsSerializer(ModelSerializer):
     """
     The todo projects serializer
     """
-    project_image = ImageField(max_length=None, use_url=True)
-    subprojects = SubProjectSerializer(many=True, read_only=False)
-    projecttasks = TasksSerializer(many=True, read_only=False)
-    groups = GroupSerializer(many=True, read_only=False)
+    project_image = Base64ImageField(required=False)
+    subprojects = SubProjectSerializer(many=True, read_only=False, required=False)
+    projecttasks = TasksSerializer(many=True, read_only=False, required=False)
+    groups = GroupSerializer(many=True, read_only=False, required=False)
     class Meta:
         """
         The Project model fields
@@ -55,4 +56,6 @@ class ProjectsSerializer(ModelSerializer):
             'organization',
             'groups',
             'users',
+            'project_type',
+            'project_status',
         )

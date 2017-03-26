@@ -50,6 +50,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -58,7 +59,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 )
 
@@ -97,7 +97,8 @@ DATABASES = {
     }
 }
 CORS_ORIGIN_WHITELIST = (
-    'localhost:4200'
+    'localhost:4200',
+    'localhost:4000',
 )
 CORS_ALLOW_METHODS = (
     'DELETE',
@@ -134,6 +135,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     #'/var/www/static/',
 ]
+
+ALLOWED_HOSTS = ['*']
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

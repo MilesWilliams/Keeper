@@ -5,7 +5,12 @@ from rest_framework.generics import (
     UpdateAPIView,
     RetrieveAPIView,
 )
-
+from rest_framework.permissions import (
+    AllowAny,
+    IsAuthenticated,
+    IsAdminUser,
+    IsAuthenticatedOrReadOnly,
+)
 from django.contrib.auth.models import User
 from Organizations.models import Organizations, Users, Groups
 from .serializers import UserSerializer, OrganizationSerializer, GroupSerializer, UsersSerializer
@@ -32,6 +37,11 @@ class GroupCreateView(CreateAPIView):
     """
     queryset = Groups.objects.all()
     serializer_class = GroupSerializer
+    permission_classes = [AllowAny]
+
+    def put(self, request, *args, **kwargs):
+
+        return self.create(request, *args, **kwargs)
 
 class GroupDeleteView(DestroyAPIView):
     """
