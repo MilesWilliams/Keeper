@@ -86,6 +86,7 @@ class TaskUpdateApiView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView):
     """
     queryset = Tasks.objects.all()
     serializer_class = TasksSerializer
+    permission_classes = [AllowAny]
 
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
